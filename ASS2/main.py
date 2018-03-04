@@ -1,5 +1,5 @@
-
-from modules import immunization
+import numpy as np
+from modules.immunization import Immunization
 
 ############## EX. 1.1 #################################
 # Creating the instances of GIC's
