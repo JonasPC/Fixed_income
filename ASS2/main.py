@@ -33,10 +33,6 @@ result_1_1 = [investment[0] / np.sum(cbb), investment[1] / frb]
 print(result_1_1)
 
 Investment = {'CBB': result_1_1[0], 'FRB': result_1_1[1]}
-df1 = pd.DataFrame(Investment, index = ['Amount investable'])
-df1.round(1)
+df1 = pd.DataFrame(Investment, index=['Amount investable'])
 
-
-to_latex_table('ex11', df1, directory='ASS2')
-
-
+to_latex_table('ex11', df1, directory='ASS2', index=True)
