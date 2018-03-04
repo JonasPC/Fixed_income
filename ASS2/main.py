@@ -1,5 +1,7 @@
 import numpy as np
+import pandas as pd
 from modules.immunization import Immunization
+from modules.utils import to_latex_table
 
 ############## EX. 1.1 #################################
 # Creating the instances of GIC's
@@ -29,3 +31,12 @@ investment = gic1.investment(w1[0], w1[1], pv_liability)
 result_1_1 = [investment[0] / np.sum(cbb), investment[1] / frb]
 
 print(result_1_1)
+
+Investment = {'CBB': result_1_1[0], 'FRB': result_1_1[1]}
+df1 = pd.DataFrame(Investment, index = ['Amount investable'])
+df1.round(1)
+
+
+to_latex_table('ex11', df1, directory='ASS2')
+
+
