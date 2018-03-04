@@ -21,9 +21,6 @@ class Immunization(object):
         for i in range(maturity):
             price_cf = (1)*np.exp(-self.interest)
             list_of_cf.append(price_cf)
-        for i in range(len(list_of_cf)):
-            cf = counter*list_of_cf[i]
-            counter = cf*counter
         return price_cf
     
     def cbb_price(self, c, maturity):
@@ -37,7 +34,7 @@ class Immunization(object):
         return list_of_cf            
     
     def pv(self, future_val, y ):
-        pv = future_val*(1+self.interest)**(-y)
+        pv = future_val*np.exp(-self.interest*y)
         return pv
         
     def duration(self, maturity, bond_type='CBB', list_of_prices = [], n=1):
@@ -62,8 +59,8 @@ class Immunization(object):
             raise Exception('bond_type must be CBB or ZCB')
         return convexity
         
-    def weights(self, duration1, duration2):
-        weigth1 = (self.liquidation - duration2)/(duration1 - duration2)
+    def weights(self, duration_liability, duration1, duration2):
+        weigth1 = (duration_liability - duration2)/(duration1 - duration2)
         weigth2 = 1 - weigth1
         return [weigth1, weigth2]
     
@@ -81,8 +78,8 @@ class Immunization(object):
   
 ############## EX. 1.1 #################################
 #Creating the instances of GIC's 
-gic1 = Immunization(0.02, 2)
-gic2 = Immunization(0.02, 3)
+gic1 = Immunization(0.020, 2)
+gic2 = Immunization(0.020, 3)
 
 
 # computing the NPV of future payments
@@ -93,15 +90,18 @@ dur_liability = pv_gic1/(pv_gic1+pv_gic2)*gic1.liquidation + pv_gic2/(pv_gic1+pv
 
 cbb = gic1.cbb_price(0.05, 5)
 frb = gic1.frb_price(4)
+frb = 1
 
 # duration of the two types of bonds
 dur_cbb = gic1.duration(5, bond_type='CBB', list_of_prices = cbb)
 dur_frb = gic1.duration(1, bond_type='ZCB')
 
 # Making weights
-w1 = gic1.weights(dur_cbb, dur_frb)
+w1 = gic1.weights(dur_liability, dur_cbb, dur_frb)
 
 investment = gic1.investment(w1[0], w1[1], pv_liability)
-result_1_1 = [investment[0]*np.sum(cbb), investment[1]*frb]
+result_1_1 = [investment[0]/np.sum(cbb), investment[1]/frb]
                       
 print(result_1_1)
+
+
