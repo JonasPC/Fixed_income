@@ -11,7 +11,7 @@ def to_latex_table(file_name, df, directory=None, index=False):
     """
 
     if directory is None:
-        with open('{}.tex'.format(directory, file_name), 'w') as tf:
+        with open('{}.tex'.format(file_name), 'w') as tf:
             tf.write(df.to_latex(index=index))
     else:
         with open('{}//{}.tex'.format(directory, file_name), 'w') as tf:
