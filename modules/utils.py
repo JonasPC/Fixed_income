@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def to_latex_table(file_name, df, index=False):
+def to_latex_table(file_name, df, directory=None, index=False):
     """
     Parameters
     ==========
@@ -10,5 +10,9 @@ def to_latex_table(file_name, df, index=False):
     index : should the index of the DataFrame be shown
     """
 
-    with open('{}.tex'.format(file_name), 'w') as tf:
-        tf.write(df.to_latex(index=index))
+    if directory is None:
+        with open('{}.tex'.format(directory, file_name), 'w') as tf:
+            tf.write(df.to_latex(index=index))
+    else:
+        with open('{}//{}.tex'.format(directory, file_name), 'w') as tf:
+            tf.write(df.to_latex(index=index))
