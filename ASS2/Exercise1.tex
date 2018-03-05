@@ -1,13 +1,30 @@
 
-\section*{Exercise 1}
+\section*{Exercise 1.1}
 
-The idea behind immunizing is to adjust the duration of assets and liabilities such that $D_{A}=D_{L}$. Under the assumption [indsæt antagelser], changes in interest rates will have no influence on the immunized portfolio, as the net duration is 0. Secondly, the company has to make sure, that it invests the exact amount such that it can pay the liabilities with the investment made today i. e. $PV_A = PV_B$
+The idea behind immunizing is to adjust the duration of assets and liabilities such that $D_{A}=D_{L}$. Under the assumptions that 1) interest shift happen in a parallel way, 2) interest shifts happen just after setting up the immunizing portfolio and 3) The forward rates, changes in interest rates will not deteriorate the value of the immunized portfolio (at liquidation time), as the net duration is 0. Secondly, the company has to make sure, that it invests the exact amount such that it can pay the liabilities with the investment made today i. e. $PV_A = PV_B$
 
 \begin{align*}
 PV_{GIC1} = 100,000\cdot e^{-0.02\cdot 2} = \$ 95,31&3 \\
 PV_{GIC2} = 110,000\cdot e^{-0.02\cdot 3} = \$ 102,35&8 \\
 PV_{L} = 95,313 + 102,358 = \$ 197,67&2 \\
 \end{align*}
+
+To make sure, that the duration of the liabilities equals duration of assets, we compute duration of each possible asset class and choose appropriate weights. 
+
+\begin{align*}
+D_{L} = 2\cdot\frac{PV_{GIC1}{PV_{GIC2}+PV_{GIC2}} + 3\cdot\frac{PV_{GIC2}{PV_{GIC2}+PV_{GIC2}} = 2.5&2 \\
+D_{CBB} = \sum_{i=1}^{5}(i\cdot\frac{CF_{i}*e^{-0.02*i}}{sum_DCF})+5\cdot \frac{1}{e^{0.02*5}} = 4.5&8 \\
+D_{FRB} = &1 \\
+\end{align*}
+
+Weights assigned to each bond type have to satisfy $W_{CBB} + W_{FRB} = 1$ and $W_{CBB}\cdot D_{CBB} + W_{FRB}\cdot D_{FRB} = 2$. Which is solvable for 2 unknown parameters
+
+\begin{align*}
+W_{FRB} = \frac{D_{L}-D_{CBB}}{D_{FRB}+D_{CBB}} = 57.&6 \%
+W_{CBB} = 1 - W_{FRB} = 42.&4 \%
+\end{align*}
+
+To get to the notional of each asset we use the following formula: $N_{x} = \frac{PV_{A}\cdot W_{x}}{Price_{x}} $. Results are reported in table 1
 
 \begin{table}
 \centering
