@@ -1,3 +1,24 @@
 \section{Exercise 1.2}
 
-In the new setting a discrete interest rate shock is modeled s.t. the interest rate structure goes from $\rinf(0,T)$ to
+In the new setting a discrete  shock to the term structure of interest rates is modeled s.t. the term structure of interest rates goes from $\rinf(0,T) = 2 \%$ to $\rinf{0,T}=2.4 \%$. Considering part 3.8 from the lecture notes it can be established that:
+
+\begin{equation}
+	r(0,T)^{*} = r(0,T) + \Delta r
+\end{equation}
+
+\begin{enumerate}
+	\item PV assets = PV liabilites
+	\item Duration assets = Duration liabilites
+	\item Convexity assets $\geq$ Convexity liabilites
+\end{enumerate}
+
+So if there is no other shocks to the term structure of interest rates, we can conclude that $V_{assets}(D) \geq V_{liabilites}(D)$, after the shock. Below is the results listed:
+
+\begin{table}
+\centering
+\caption{Value of liabilities and assets after change in $r$}
+\label{tab:ex12}
+\import{/}{ex12.tex}
+\end{table}
+
+Unfortunately we find that the value of assets is not greater than the value of the liabilities, which was what we had expected. We cannot account this discrepancy, and we must conclude, that our results conflict with the theoretical results.
