@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 from modules.immunization import Immunization
 from modules.utils import to_latex_table
-
 # %%
 ############## EX. 1.1 #################################
 # Creating the instances of GIC's
@@ -72,6 +71,8 @@ con_cbb = Immunization.convexity(4, _cbb[1:], bond_type='CBB')
 con_cbb2 = Immunization.convexity(2, _cbb2, bond_type='CBB')
 con_frb = dur_frb**2
 con_frb2 = dur_frb2**2
+cbb_notion = cbb_notion
+frb_notion = frb_notion
 cbb2_notion = 0
 frb2_notion = 0
 print('prices', cbb, frb, cbb2, frb2)
@@ -84,8 +85,12 @@ Values2 = {'CBB_4': cbb, 'CBB_2': cbb2, 'FRB': frb, 'FRB_0.5': frb2}
 df3 = pd.DataFrame(Values2, index=['Prices'])
 Values3 = {'CBB_4': dur_cbb, 'CBB_2': dur_cbb2, 'FRB': dur_frb, 'FRB_0.5': dur_frb2}
 df4 = pd.DataFrame(Values3, index=['Duration'])
-df5 = pd.concat([df3, df4])
-#to_latex_table('ex21', df5, directory='ASS2', index=True, nr_decimals=2)
+Values4 = {'CBB_4': con_cbb, 'CBB_2': con_cbb2, 'FRB': con_frb, 'FRB_0.5': con_frb2}
+df5 = pd.DataFrame(Values4, index=['Convexity'])
+Values5 = {'CBB_4': cbb_notion, 'CBB_2': cbb2_notion, 'FRB': frb_notion, 'FRB_0.5': frb2_notion}
+df6 = pd.DataFrame(Values5, index=['Notional'])
+df7 = pd.concat([df3, df4, df5, df6])
+to_latex_table('ex21', df7, directory='ASS2', index=True, nr_decimals=2)
 
 dur_liability = pv_gic1 / (pv_gic1 + pv_gic2) * (gic1.liquidation - 1) + \
     pv_gic2 / (pv_gic1 + pv_gic2) * (gic2.liquidation - 1)
@@ -114,5 +119,8 @@ opt_sol = Immunization.Practical_immunization(
 
 opt_sol
 print(np.sum(opt_sol.x))
+#%%
 
-opt_sol
+val = {'CBB_4': opt_sol.x[0], 'CBB_2': opt_sol.x[2], 'FRB': opt_sol.x[1], 'FRB2': opt_sol.x[3]}
+dafr = pd.DataFrame(val, index=['Notional'])
+        to_latex_table('ex211', dafr, directory='ASS2', index=True, nr_decimals=2)

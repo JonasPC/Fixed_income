@@ -1,0 +1,24 @@
+\Section*{Exercise 2}
+
+At time t=1, we want to rebalance the portfolio, as the duration of the fixed coupon bond has changed, while the floating rate bond has not. We want to rebalance the portfolio against future interest rate changes. Furthermore there are introduced two new bonds type from which we can choose from. The table below reports key values for all four bond types.
+
+\begin{table}[ht]
+\centering
+\caption{Bond stats}
+\label{tab:bond_stats}
+\import{/}{ex21.tex}
+\end{table}
+
+The objective is to rebalance the portfolio such that transaction costs are minimized under the standard immunization portfolio constraints i.e. $D_{L}=D_{A}$, $\Sum w = 1$, $PV_{A}=PV_{L}$, $C_{A} \leq C_{B} $ and $ 0 \leq w_1, w_2, w_3, w_4 \leq  0.5$. duration and convexity of the liabilites are at t=1 reduced to 1.52 and 2.55 respectively.
+
+Under these constraints we set up an objective function, $\textbf{min}\sum(N-\bar{N}^2)$ using the 'SLSQP' numerical optimization method (for documentation see the Python script in appendix). We end up with the following distribution of notionals:
+(We assume, that all CBB's with 5-year maturity we could buy at t=0 are still available at t=1, but that there are issued no more 5-year bonds, so that we still have a total of 4 bond-types to choose from)
+
+\begin{table}[ht]
+\centering
+\caption{Reoptimized portfolio}
+\label{tab:reopt_port}
+\import{/}{ex211.tex}
+\end{table}
+
+As we see there has been a big re-optimizing from floating rate bonds to fixed rate bonds, which is not surprising, as duration of the available CBB's have decreased while durations of FRB's have not.  

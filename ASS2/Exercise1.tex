@@ -11,13 +11,11 @@ PV_{L} = 95,313 + 102,358 = \$ 197,67&2 \\
 
 To make sure, that the duration of the liabilities equals duration of assets, we compute duration of each possible asset class and choose appropriate weights.
 
-\iffalse 
 \begin{align*}
-D_{L} = 2\cdot\frac{PV_{GIC1}{PV_{GIC2}+PV_{GIC2}} + 3\cdot\frac{PV_{GIC2}{PV_{GIC2}+PV_{GIC2}} = 2.5&2 \\
-D_{CBB} = \sum_{i=1}^{5}(i\cdot\frac{CF_{i}*e^{-0.02*i}}{sum_DCF})+5\cdot \frac{1}{e^{0.02*5}} = 4.5&8 \\
-D_{FRB} = 1.0&0 \\
+D_{L} = 2\cdot \frac{PV_{GIC1}}{PV_{GIC2}+PV_{GIC2}} + 3\cdot\frac{PV_{GIC2}}{PV_{GIC2}+PV_{GIC2}} &= 2.52 \\
+D_{CBB} = \sum_{i=1}^{5}(i\cdot\frac{CF_{i}*e^{-0.02*i}}{sum_DCF})+5\cdot \frac{1}{e^{0.02*5}} &= 4.58 \\
+D_{FRB} &= 1.00 \\
 \end{align*}
-\fi
 
 Weights assigned to each bond type have to satisfy $W_{CBB} + W_{FRB} = 1$ and $W_{CBB}\cdot D_{CBB} + W_{FRB}\cdot D_{FRB} = 2$. Which is solvable for 2 unknown parameters.
 \begin{align*}
